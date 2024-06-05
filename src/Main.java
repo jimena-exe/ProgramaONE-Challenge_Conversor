@@ -4,9 +4,8 @@ public class Main {
     public static void main(String[] args) {
         Scanner tecladoOpcion = new Scanner(System.in);
         Scanner tecladoDineroIngresado = new Scanner(System.in);
-        double cantidadDinero = 0 ;
-        int opcion = 0;
-        ConvertirMoneda conversion = new ConvertirMoneda();
+        double cantidadDinero;
+        int opcion;
 
 
         System.out.println("\nBienvenido al conversor de moneda más efectivo del mercado :D");
@@ -27,47 +26,47 @@ public class Main {
         while (!salir){
             System.out.print(menuOpciones);
             opcion = tecladoOpcion.nextInt();
-            switch ( opcion ){
-                case 1:
-                    //String pesoBase = "USD";
-                    String pesoAConvertir = "ARS";
+            ConvertirMoneda conversion = new ConvertirMoneda();
+            String pesoArs = "ARS";
+            String pesoBrl = "BRL";
+            String pesoCop = "COP";
 
+            switch ( opcion ){
+                case 1: //USD - ARS
                     System.out.println("Ingresa la cantidad de Dolares a convertir: ");
                     cantidadDinero = tecladoDineroIngresado.nextDouble();
-
-                    Moneda dolarAArgs = conversion.convertirDolar(pesoAConvertir,cantidadDinero);
+                    Moneda dolarAArgs = conversion.convertirDolar(pesoArs,cantidadDinero);
                     System.out.println("Los "+ cantidadDinero+" [USD] equivalen a: "+ dolarAArgs.conversion_result()+" [ARS]");
                 break;
-                case 2:
+                case 2://ARS - USD
                     System.out.println("Ingresa la cantidad de Pesos Argentinos a convertir: ");
-
-                    System.out.println("Los  (cantidad)[ARS] equivalen a: (cantidad) [USD]");
+                    cantidadDinero = tecladoDineroIngresado.nextDouble();
+                    Moneda arsADolar = conversion.convertirCantidadADolar(pesoArs,cantidadDinero);
+                    System.out.println("Los "+cantidadDinero+" [ARS] equivalen a: "+arsADolar.conversion_result()+" [USD]");
                     break;
-                case 3:
-                    String pesoAConvertir1 = "BRL";
+                case 3://USD - BRL
                     System.out.println("Ingresa la cantidad de Dolares a convertir: ");
                     cantidadDinero = tecladoDineroIngresado.nextDouble();
-
-                    Moneda dolarABrl = conversion.convertirDolar(pesoAConvertir1,cantidadDinero);
+                    Moneda dolarABrl = conversion.convertirDolar(pesoBrl,cantidadDinero);
                     System.out.println("Los "+ cantidadDinero+" [USD] equivalen a: "+ dolarABrl.conversion_result()+" [BRL]");
                     break;
-                case 4:
+                case 4://BRL - USD
                     System.out.println("Ingresa la cantidad de Reales Brasileños a convertir: ");
-
-                    System.out.println("Los  (cantidad)[BRL] equivalen a: (cantidad) [USD]");
+                    cantidadDinero = tecladoDineroIngresado.nextDouble();
+                    Moneda brlADolar = conversion.convertirCantidadADolar(pesoBrl,cantidadDinero);
+                    System.out.println("Los "+cantidadDinero+" [BRL] equivalen a: "+brlADolar.conversion_result()+" [USD]");
                     break;
-                case 5:
-                    String pesoAConvertir2 = "COP";
+                case 5://USD - COP
                     System.out.println("Ingresa la cantidad de Dolares a convertir: ");
                     cantidadDinero = tecladoDineroIngresado.nextDouble();
-
-                    Moneda dolarACop = conversion.convertirDolar(pesoAConvertir2,cantidadDinero);
+                    Moneda dolarACop = conversion.convertirDolar(pesoCop,cantidadDinero);
                     System.out.println("Los "+ cantidadDinero+" [USD] equivalen a: "+ dolarACop.conversion_result()+" [COP]");
                     break;
-                case 6:
+                case 6://COP - USD
                     System.out.println("Ingresa la cantidad de Pesos Colombianos a convertir: ");
-
-                    System.out.println("Los  (cantidad)[COP] equivalen a: (cantidad) [USD]");
+                    cantidadDinero = tecladoDineroIngresado.nextDouble();
+                    Moneda copADolar = conversion.convertirCantidadADolar(pesoArs,cantidadDinero);
+                    System.out.println("Los "+cantidadDinero+" [COP] equivalen a: "+copADolar.conversion_result()+" [USD]");
                     break;
                 case 7:
                     System.out.println("El programa del conversor, ha finalizado.");

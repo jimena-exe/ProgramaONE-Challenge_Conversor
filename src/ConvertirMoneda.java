@@ -11,7 +11,7 @@ public class ConvertirMoneda {
     //        public String pais = ""; double cantidadMoneda = 2300;
 
     //Cantidad en general a USD
-    public Moneda convertirCantidadADolar (String pesoBase, int cantidadMoneda){
+    public Moneda convertirCantidadADolar (String pesoBase, double cantidadMoneda){
         URI direccion = URI.create("https://v6.exchangerate-api.com/v6/172ff18e14654294517a5334/pair/"+pesoBase+"/USD/"+cantidadMoneda); //dirección de la API
 
         //cliente
@@ -26,11 +26,11 @@ public class ConvertirMoneda {
                     .send(request, HttpResponse.BodyHandlers.ofString());
             return new Gson().fromJson(response.body(),Moneda.class);
         }catch (Exception e){
-            throw new RuntimeException("No pude hacer la converción que deseas");
+            throw new RuntimeException("No pude hacer la conversión que deseas");
         }
     }
 
-    //Conversion ingresando el peso a convertir y la cantidad
+    //Conversion de USD a moneda general y la cantidad
     public Moneda convertirDolar (String pesoAConvertir, double cantidadDolar){
         URI direccion = URI.create("https://v6.exchangerate-api.com/v6/172ff18e14654294517a5334/pair/USD/"+pesoAConvertir+"/"+cantidadDolar);
 
@@ -44,7 +44,7 @@ public class ConvertirMoneda {
                     .send(request, HttpResponse.BodyHandlers.ofString());
             return new Gson().fromJson(response.body(), Moneda.class);
         }catch (Exception e){
-            throw new RuntimeException("No pude hacer la converción que deseas");
+            throw new RuntimeException("No pude hacer la conversión que deseas");
         }
 
 
