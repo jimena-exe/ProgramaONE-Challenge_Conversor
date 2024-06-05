@@ -2,8 +2,12 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner teclado = new Scanner(System.in);
+        Scanner tecladoOpcion = new Scanner(System.in);
+        Scanner tecladoDineroIngresado = new Scanner(System.in);
+        double cantidadDinero = 0 ;
         int opcion = 0;
+        ConvertirMoneda conversion = new ConvertirMoneda();
+
 
         System.out.println("\nBienvenido al conversor de moneda más efectivo del mercado :D");
         String menuOpciones = """
@@ -19,63 +23,58 @@ public class Main {
                 \n¿Qué moneda deseas convertir el día de hoy? (elige un número del menú): """;
 
 
-        while (opcion != 9){
+        boolean salir = false;
+        while (!salir){
             System.out.print(menuOpciones);
-            opcion = teclado.nextInt();
+            opcion = tecladoOpcion.nextInt();
             switch ( opcion ){
                 case 1:
-                    System.out.println("Elejiste la opción 1");
+                    //String pesoBase = "USD";
+                    String pesoAConvertir = "ARS";
+
+                    System.out.println("Ingresa la cantidad de Dolares a convertir: ");
+                    cantidadDinero = tecladoDineroIngresado.nextDouble();
+
+                    Moneda dolarAArgs = conversion.convertirDolar(pesoAConvertir,cantidadDinero);
+                    System.out.println("Los "+ cantidadDinero+" [USD] equivalen a: "+ dolarAArgs.conversion_result()+" [ARS]");
                 break;
                 case 2:
-                    System.out.println("Elejiste la opción" + opcion);
+                    System.out.println("Ingresa la cantidad de Pesos Argentinos a convertir: ");
+
+                    System.out.println("Los  (cantidad)[ARS] equivalen a: (cantidad) [USD]");
                     break;
                 case 3:
-                    System.out.println("Elejiste la opción 3");
+                    String pesoAConvertir1 = "BRL";
+                    System.out.println("Ingresa la cantidad de Dolares a convertir: ");
+                    cantidadDinero = tecladoDineroIngresado.nextDouble();
+
+                    Moneda dolarABrl = conversion.convertirDolar(pesoAConvertir1,cantidadDinero);
+                    System.out.println("Los "+ cantidadDinero+" [USD] equivalen a: "+ dolarABrl.conversion_result()+" [BRL]");
                     break;
                 case 4:
-                    System.out.println("Elejiste la opción 4");
+                    System.out.println("Ingresa la cantidad de Reales Brasileños a convertir: ");
+
+                    System.out.println("Los  (cantidad)[BRL] equivalen a: (cantidad) [USD]");
                     break;
                 case 5:
-                    System.out.println("Elejiste la opción 5");
+                    String pesoAConvertir2 = "COP";
+                    System.out.println("Ingresa la cantidad de Dolares a convertir: ");
+                    cantidadDinero = tecladoDineroIngresado.nextDouble();
+
+                    Moneda dolarACop = conversion.convertirDolar(pesoAConvertir2,cantidadDinero);
+                    System.out.println("Los "+ cantidadDinero+" [USD] equivalen a: "+ dolarACop.conversion_result()+" [COP]");
                     break;
                 case 6:
-                    System.out.println("Elejiste la opción 1");
+                    System.out.println("Ingresa la cantidad de Pesos Colombianos a convertir: ");
+
+                    System.out.println("Los  (cantidad)[COP] equivalen a: (cantidad) [USD]");
                     break;
                 case 7:
-                    System.out.println("Elejiste la opción 1");
-                    break;
-                case 8:
-                    System.out.println("Elejiste la opción 1");
-                    break;
-                case 9:
-                    System.out.println("Elejiste la opción 1");
-                    break;
-
-
+                    System.out.println("El programa del conversor, ha finalizado.");
+                    salir = true;
+                break;
             }
         }
-
-
-        /**
-         * Idea:
-         * El usuario ingresa un número del menú
-         * Decirle, has elegido tal conversión
-         * debe ingresar la cantidad de dinero
-         * El programa la muestra la cantidad convertida al otro peso
-         * Vuelve y aparece el menú*/
-
-        /**
-         * Back
-         * Main= menú
-         * Clase moneda, construye el objeto moneda = me trae los datos de esa moneda
-         * Clase Convertir = Hace el request a la API
-         * X cantidad * valor de la moneda
-         * */
-        /**
-         * Solo necesito la cantidad a convertir
-         * dónde pongo esa cantidad?
-         * Paises ya son por default**/
-
 
 
     }

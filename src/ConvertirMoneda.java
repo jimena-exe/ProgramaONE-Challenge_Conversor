@@ -10,10 +10,12 @@ public class ConvertirMoneda {
     //        private String apiKey ="172ff18e14654294517a5334";
     //        public String pais = ""; double cantidadMoneda = 2300;
 
-    public Moneda convertirCantidad (int cantidadMoneda){
-        URI direccion = URI.create("https://v6.exchangerate-api.com/v6/172ff18e14654294517a5334/pair/USD/COP/"+cantidadMoneda); //dirección de la API
+    //Cantidad en general a USD
+    public Moneda convertirCantidadADolar (String pesoBase, int cantidadMoneda){
+        URI direccion = URI.create("https://v6.exchangerate-api.com/v6/172ff18e14654294517a5334/pair/"+pesoBase+"/USD/"+cantidadMoneda); //dirección de la API
 
-        HttpClient client= HttpClient.newHttpClient(); //cliente
+        //cliente
+        HttpClient client= HttpClient.newHttpClient();
         //Request
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(direccion)
@@ -27,6 +29,28 @@ public class ConvertirMoneda {
             throw new RuntimeException("No pude hacer la converción que deseas");
         }
     }
+
+    //Conversion ingresando el peso a convertir y la cantidad
+    public Moneda convertirDolar (String pesoAConvertir, double cantidadDolar){
+        URI direccion = URI.create("https://v6.exchangerate-api.com/v6/172ff18e14654294517a5334/pair/USD/"+pesoAConvertir+"/"+cantidadDolar);
+
+        HttpClient cliente = HttpClient.newHttpClient();
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(direccion)
+                .build();
+        try{
+            HttpResponse<String> response = cliente
+                    .send(request, HttpResponse.BodyHandlers.ofString());
+            return new Gson().fromJson(response.body(), Moneda.class);
+        }catch (Exception e){
+            throw new RuntimeException("No pude hacer la converción que deseas");
+        }
+
+
+    }
+
+
 
 
 
